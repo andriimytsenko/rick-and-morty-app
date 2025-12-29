@@ -3,7 +3,7 @@ package com.rickandmorty.app.characters.data.remote.consts
 /**
  * This is [com.rickandmorty.app.characters] feature scoped JSON keys.
  */
-object DtoKeyName {
+internal object DtoKeyName {
 
     /* Common mapping keys */
     const val ID = "id"
@@ -22,14 +22,14 @@ object DtoKeyName {
     const val RESULTS = "results"
 
     /* StatusDto enum mapping keys */
-    object Status {
+    internal object Status {
         const val ALIVE = "Alive"
         const val DEAD = "Dead"
         const val UNKNOWN = "unknown"
     }
 
     /* GenderDto enum mapping keys */
-    object Gender {
+    internal object Gender {
         const val FEMALE = "Female"
         const val MALE = "Male"
         const val GENDERLESS = "Genderless"

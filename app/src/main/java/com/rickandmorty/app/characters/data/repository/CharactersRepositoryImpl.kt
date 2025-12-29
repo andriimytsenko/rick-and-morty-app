@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-class CharactersRepositoryImpl(
+internal class CharactersRepositoryImpl(
     private val remoteDataSource: CharactersRemoteDataSource
 ) : CharactersRepository {
 

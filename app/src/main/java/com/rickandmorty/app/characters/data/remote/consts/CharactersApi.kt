@@ -3,13 +3,13 @@ package com.rickandmorty.app.characters.data.remote.consts
 /**
  * This is [com.rickandmorty.app.characters] feature scoped API.
  */
-object CharactersApi {
+internal object CharactersApi {
 
-    object Route {
+    internal object Route {
         const val CHARACTER = "character"
     }
 
-    object Query {
+    internal object Query {
         const val PAGE = "page"
     }
 }

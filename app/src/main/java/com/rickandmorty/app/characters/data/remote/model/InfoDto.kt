@@ -1,11 +1,11 @@
-package com.rickandmorty.app.characters.data.remote.response
+package com.rickandmorty.app.characters.data.remote.model
 
 import com.rickandmorty.app.characters.data.remote.consts.DtoKeyName
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseInfoDto(
+internal data class InfoDto(
 
     @SerialName(DtoKeyName.COUNT)
     val count: Int,
