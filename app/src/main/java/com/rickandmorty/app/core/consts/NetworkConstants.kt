@@ -1,11 +1,11 @@
-package com.rickandmorty.app.core.data.remote
+package com.rickandmorty.app.core.consts
 
 /**
  * This is general network settings constants.
  */
 object NetworkConstants {
 
-    const val BASE_URL = "https://rickandmortyapi.com/api"
+    const val BASE_URL = "https://rickandmortyapi.com/api/"
 
     object Timeout {
         const val REQUEST_TIMEOUT_MILLIS = 5000L // 5 seconds

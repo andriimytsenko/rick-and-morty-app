@@ -1,3 +1,13 @@
 <resources>
+    <!-- Common text -->
     <string name="app_name">Rick and Morty</string>
+    <string name="gender">Gender</string>
+    <string name="origin">Origin</string>
+    <string name="location">Location</string>
+    <string name="none_result_found">None result found</string>
+    <string name="something_went_wrong">Something went wrong...</string>
+    <!-- Button text -->
+    <string name="button_back">Back</string>
+    <string name="button_refresh">Refresh</string>
+    <string name="button_try_again">Try Again</string>
 </resources>

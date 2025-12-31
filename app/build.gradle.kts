@@ -73,6 +73,7 @@ dependencies {
     ksp(libs.androidx.room.compiler)
 
     /* Coil */
+    implementation(platform(libs.coil.bom))
     implementation(libs.bundles.coil)
 
     /* Koin */

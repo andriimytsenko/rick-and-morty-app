@@ -1,10 +1,10 @@
-package com.rickandmorty.app.characters.data
+package com.rickandmorty.app.characters.domain.mappers
 
 import com.rickandmorty.app.characters.data.remote.model.CharacterDto
-import com.rickandmorty.app.characters.data.repository.model.Character
+import com.rickandmorty.app.characters.domain.model.Character
 
-/* Map CharacterDto instance into public model */
-internal fun CharacterDto.toDomainModel() = Character(
+/* Map CharacterDto instance into domain model */
+fun CharacterDto.toDomainModel() = Character(
     id = id,
     name = name,
     status = status.name,

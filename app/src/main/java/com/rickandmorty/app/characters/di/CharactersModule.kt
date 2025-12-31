@@ -1,10 +1,17 @@
 package com.rickandmorty.app.characters.di
 
+import com.rickandmorty.app.characters.data.cache.CharactersCacheDataSource
+import com.rickandmorty.app.characters.data.cache.CharactersCacheDataSourceImpl
 import com.rickandmorty.app.characters.data.remote.CharactersRemoteDataSource
+import com.rickandmorty.app.characters.data.remote.CharactersRemoteDataSourceImpl
 import com.rickandmorty.app.characters.data.repository.CharactersRepository
 import com.rickandmorty.app.characters.data.repository.CharactersRepositoryImpl
-import com.rickandmorty.app.characters.domain.GetCharactersUseCase
-import com.rickandmorty.app.characters.ui.browse.BrowseCharactersViewModel
+import com.rickandmorty.app.characters.domain.usecase.GetCharacterByIdUseCase
+import com.rickandmorty.app.characters.domain.usecase.GetCharactersUseCase
+import com.rickandmorty.app.characters.ui.browse.BrowseStateFactory
+import com.rickandmorty.app.characters.ui.browse.BrowseViewModel
+import com.rickandmorty.app.characters.ui.profile.ProfileStateFactory
+import com.rickandmorty.app.characters.ui.profile.ProfileViewModel
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
@@ -12,11 +19,16 @@ import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
 /**
- * This is [com.rickandmorty.app.characters] feature scoped Koin module.
+ * This is [com.rickandmorty.app.characters] feature Koin module.
  */
 val charactersFeatureModule = module {
-    /* Remote DataSources */
-    factoryOf(::CharactersRemoteDataSource)
+    /* DataSources */
+    factoryOf(::CharactersRemoteDataSourceImpl) {
+        bind<CharactersRemoteDataSource>()
+    }
+    singleOf(::CharactersCacheDataSourceImpl) {
+        bind<CharactersCacheDataSource>()
+    }
 
     /* Repositories */
     singleOf(::CharactersRepositoryImpl) {
@@ -25,7 +37,13 @@ val charactersFeatureModule = module {
 
     /* UseCases */
     factoryOf(::GetCharactersUseCase)
+    factoryOf(::GetCharacterByIdUseCase)
+
+    /* UI StateFactories */
+    factoryOf(::BrowseStateFactory)
+    factoryOf(::ProfileStateFactory)
 
     /* ViewModels */
-    viewModelOf(::BrowseCharactersViewModel)
+    viewModelOf(::BrowseViewModel)
+    viewModelOf(::ProfileViewModel)
 }

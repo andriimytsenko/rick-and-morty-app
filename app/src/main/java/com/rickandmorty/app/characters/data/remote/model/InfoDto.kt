@@ -1,21 +1,20 @@
 package com.rickandmorty.app.characters.data.remote.model
 
-import com.rickandmorty.app.characters.data.remote.consts.DtoKeyName
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class InfoDto(
+data class InfoDto(
 
-    @SerialName(DtoKeyName.COUNT)
+    @SerialName("count")
     val count: Int,
 
-    @SerialName(DtoKeyName.PAGES)
+    @SerialName("pages")
     val pages: Int,
 
-    @SerialName(DtoKeyName.NEXT)
+    @SerialName("next")
     val next: String? = null,
 
-    @SerialName(DtoKeyName.PREV)
+    @SerialName("prev")
     val prev: String? = null
 )

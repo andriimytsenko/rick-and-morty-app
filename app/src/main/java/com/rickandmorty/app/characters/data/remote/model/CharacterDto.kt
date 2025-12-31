@@ -1,35 +1,34 @@
 package com.rickandmorty.app.characters.data.remote.model
 
-import com.rickandmorty.app.characters.data.remote.consts.DtoKeyName
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class CharacterDto(
+data class CharacterDto(
 
-    @SerialName(DtoKeyName.ID)
+    @SerialName("id")
     val id: Int,
 
-    @SerialName(DtoKeyName.NAME)
+    @SerialName("name")
     val name: String,
 
-    @SerialName(DtoKeyName.STATUS)
+    @SerialName("status")
     val status: StatusDto,
 
-    @SerialName(DtoKeyName.SPECIES)
+    @SerialName("species")
     val species: String,
 
-    @SerialName(DtoKeyName.GENDER)
+    @SerialName("gender")
     val gender: GenderDto,
 
-    @SerialName(DtoKeyName.IMAGE)
+    @SerialName("image")
     val image: String,
 
     /* Character's origin location */
-    @SerialName(DtoKeyName.ORIGIN)
+    @SerialName("origin")
     val origin: LocationDto,
 
     /* Character's last known location endpoint */
-    @SerialName(DtoKeyName.LOCATION)
+    @SerialName("location")
     val location: LocationDto
 )

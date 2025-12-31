@@ -1,21 +1,20 @@
 package com.rickandmorty.app.characters.data.remote.model
 
-import com.rickandmorty.app.characters.data.remote.consts.DtoKeyName
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal enum class GenderDto {
+enum class GenderDto {
 
-    @SerialName(DtoKeyName.Gender.FEMALE)
+    @SerialName("Female")
     FEMALE,
 
-    @SerialName(DtoKeyName.Gender.MALE)
+    @SerialName("Male")
     MALE,
 
-    @SerialName(DtoKeyName.Gender.GENDERLESS)
+    @SerialName("Genderless")
     GENDERLESS,
 
-    @SerialName(DtoKeyName.Gender.UNKNOWN)
+    @SerialName("unknown")
     UNKNOWN
 }

@@ -1,18 +1,17 @@
 package com.rickandmorty.app.characters.data.remote.model
 
-import com.rickandmorty.app.characters.data.remote.consts.DtoKeyName
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal enum class StatusDto {
+enum class StatusDto {
 
-    @SerialName(DtoKeyName.Status.ALIVE)
+    @SerialName("Alive")
     ALIVE,
 
-    @SerialName(DtoKeyName.Status.DEAD)
+    @SerialName("Dead")
     DEAD,
 
-    @SerialName(DtoKeyName.Status.UNKNOWN)
+    @SerialName("unknown")
     UNKNOWN
 }
