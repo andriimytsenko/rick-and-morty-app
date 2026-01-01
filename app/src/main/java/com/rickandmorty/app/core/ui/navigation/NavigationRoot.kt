@@ -1,4 +1,4 @@
-package com.rickandmorty.app.core.ui.main.components
+package com.rickandmorty.app.core.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -9,8 +9,6 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.rickandmorty.app.characters.ui.browse.BrowseScreen
 import com.rickandmorty.app.characters.ui.profile.ProfileScreen
-import com.rickandmorty.app.core.ui.navigation.BrowseRoute
-import com.rickandmorty.app.core.ui.navigation.ProfileRoute
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parameterSetOf
 

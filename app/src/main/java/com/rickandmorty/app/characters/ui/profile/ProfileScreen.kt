@@ -14,8 +14,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.rickandmorty.app.R
-import com.rickandmorty.app.characters.ui.profile.components.ProfileHeader
-import com.rickandmorty.app.characters.ui.profile.components.ProfileTextSection
+import com.rickandmorty.app.characters.ui.components.ProfileHeader
+import com.rickandmorty.app.characters.ui.components.ProfileTextSection
 import com.rickandmorty.app.characters.ui.profile.model.ProfileUi
 import com.rickandmorty.app.core.ui.theme.RickAndMortyTheme
 
