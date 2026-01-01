@@ -40,27 +40,20 @@ App UI implemented via Jetpack Compose and for navigation it use [Navigation3](h
 sealed interface NavRoute : NavKey
 
 @Serializable
-data class OrderDetailsRoute(val orderId: Int) : NavRoute
-
-@Serializable
-data class CheckoutRoute() : NavRoute
+data class ProfileRoute(val id: Int) : NavRoute
 
 /* Define an Entry for added navigation key */
 NavDisplay(
-        backStack = navBackStack,
-        entryDecorators = listOf(
-            rememberSaveableStateHolderNavEntryDecorator(),
-            rememberViewModelStoreNavEntryDecorator()
-        ),
+        ...
         entryProvider = entryProvider {
             ...
-            entry<OrderDetailsRoute> { route ->
-                OrderDetailsScreen(
-                        viewModel = koinViewModel(
-                        parameters = { parameterSetOf(route.orderId) }
+            entry<ProfileRoute> { route ->
+                ProfileScreen(
+                    viewModel = koinViewModel(
+                        parameters = { parameterSetOf(route.id) }
                     ),
-                    navigateToCheckOut = { navBackStack.add(CheckoutRoute) },
                     navigateBack = { navBackStack.removeLastOrNull() }
+                )
             }
             ...
         }
@@ -69,11 +62,17 @@ NavDisplay(
 
 /* Implement Composable screen */
 @Composable
-fun OrderDetailsScreen(
-    viewModel: OrderDetailsViewModel,
-    navigateToCheckOut: () -> Unit,
+fun ProfileScreen(
+    viewModel: ProfileViewModel,
     navigateBack: () -> Unit
 ) {
+    ...
+}
+
+/* Get Profile id in ViewModel as injected constructor value */
+class ProfileViewModel(
+    private val id: Int
+) : ViewModel() {
     ...
 }
 ```
