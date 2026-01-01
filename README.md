@@ -28,10 +28,10 @@ featurename
 This app use [Koin](https://insert-koin.io/docs/quickstart/android/) for dependency injection implementation. Each **feature** should has it own file with Koin module. Check out the ```DIConfigurator.kt``` class to see how the Koin will load modules.
 
 ## Network
-To perform an API network requests this app use [Ktor](https://ktor.io/docs/client-create-new-application.html) client implementation, paired with Kotlin Serialization plugin.
+To perform an API network requests this app use [Ktor](https://ktor.io/docs/client-create-new-application.html) client implementation, paired with Kotlin Serialization plugin. See how this app configure HttpClient in ```NetworkModule.kt```.
 
 ## ImageLoader
-All images in the app load via [Coil](https://coil-kt.github.io/coil/) library. Note that it use the same shared instanse of ```HttpClient``` from netwotk module. Use ```ImageLoaderBuilder.kt``` to configure ImageLoader and cache settings.
+All images in the app load via [Coil](https://coil-kt.github.io/coil/) library. Note that it use the same shared instanse of ```HttpClient``` from network module. Use ```ImageLoaderBuilder.kt``` to configure ImageLoader and cache settings.
 
 ## UI and Navigation
 App UI implemented via Jetpack Compose and for navigation it use [Navigation3](https://developer.android.com/guide/navigation/navigation-3) library. Here is a common example of how to declare a navigation entry in this app:
