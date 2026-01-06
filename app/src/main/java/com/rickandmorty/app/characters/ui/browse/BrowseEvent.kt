@@ -4,4 +4,4 @@ sealed interface BrowseEvent
 
 data object OnScrollToEndOfContent : BrowseEvent
 
-data object OnReloadContent : BrowseEvent
+data object OnRetryLoadContent : BrowseEvent

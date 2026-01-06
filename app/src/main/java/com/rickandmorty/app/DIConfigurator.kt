@@ -2,7 +2,7 @@ package com.rickandmorty.app
 
 import android.content.Context
 import com.rickandmorty.app.characters.di.charactersFeatureModule
-import com.rickandmorty.app.core.di.coreModule
+import com.rickandmorty.app.core.di.imageLoaderModule
 import com.rickandmorty.app.core.di.localDatabaseModule
 import com.rickandmorty.app.core.di.networkModule
 import org.koin.android.ext.koin.androidContext
@@ -18,8 +18,8 @@ object DIConfigurator {
             androidContext(context)
             modules(
                 /* Core modules */
-                coreModule,
                 networkModule,
+                imageLoaderModule,
                 localDatabaseModule,
                 /* Feature modules */
                 charactersFeatureModule

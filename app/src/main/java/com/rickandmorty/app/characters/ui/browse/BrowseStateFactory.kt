@@ -22,14 +22,13 @@ class BrowseStateFactory {
     fun createWith(
         state: BrowseState,
         resource: Resource<List<Character>>,
-        page: Int,
-        refresh: Boolean
+        page: Int
     ): BrowseState {
         var hasMore = true
-        val characters = if (resource is Resource.Success) {
+        val characters = if (resource is Resource.Ready) {
             val pageData = resource.data.map { it.toUiModel() }
             hasMore = pageData.any()
-            buildCharactersList(state, page, pageData, refresh)
+            buildCharactersList(state, page, pageData)
         } else {
             state.characters
         }
@@ -45,11 +44,9 @@ class BrowseStateFactory {
     private fun buildCharactersList(
         state: BrowseState,
         page: Int,
-        pageData: List<CharacterUi>,
-        refresh: Boolean
+        pageData: List<CharacterUi>
     ): List<CharacterUi> {
         return when {
-            refresh -> pageData
             page > state.page -> state.characters.plus(pageData)
             else -> mergeCharactersData(state.characters, pageData)
         }

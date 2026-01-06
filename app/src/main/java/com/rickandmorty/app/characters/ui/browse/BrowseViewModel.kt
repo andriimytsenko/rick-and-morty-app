@@ -3,7 +3,6 @@ package com.rickandmorty.app.characters.ui.browse
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rickandmorty.app.characters.domain.usecase.GetCharactersUseCase
-import com.rickandmorty.app.core.consts.CommonConstants
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,7 +19,8 @@ class BrowseViewModel(
 
     init {
         viewModelScope.launch {
-            getCharacters(CommonConstants.PAGE_1, true)
+            val page = uiState.value.page
+            getCharacters(page)
         }
     }
 
@@ -31,25 +31,26 @@ class BrowseViewModel(
                 if (uiState.value.hasMore) {
                     viewModelScope.launch {
                         val nextPage = uiState.value.page.inc()
-                        getCharacters(nextPage, false)
+                        getCharacters(nextPage)
                     }
                 }
             }
-            /* Try to reload content */
-            is OnReloadContent -> {
+            /* Try to reload last page content */
+            is OnRetryLoadContent -> {
                 viewModelScope.launch {
-                    getCharacters(CommonConstants.PAGE_1, true)
+                    val page = uiState.value.page
+                    getCharacters(page)
                 }
             }
         }
     }
 
-    private suspend fun getCharacters(page: Int, refresh: Boolean) {
+    private suspend fun getCharacters(page: Int) {
         getCharactersUseCase(page).collect { data ->
             _uiState.update { state ->
                 val resource = data.first
                 val page = data.second
-                stateFactory.createWith(state, resource, page, refresh)
+                stateFactory.createWith(state, resource, page)
             }
         }
     }
