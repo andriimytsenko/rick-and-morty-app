@@ -31,7 +31,7 @@ This app use [Koin](https://insert-koin.io/docs/quickstart/android/) for depende
 To perform an API network requests this app use [Ktor](https://ktor.io/docs/client-create-new-application.html) client implementation, paired with Kotlin Serialization plugin. See how this app configure HttpClient in ```NetworkModule.kt```.
 
 ## ImageLoader
-All images in the app load via [Coil](https://coil-kt.github.io/coil/) library. Note that it use the same shared instanse of ```HttpClient``` from network module. Use ```ImageLoaderBuilder.kt``` to configure ImageLoader and cache settings.
+All images in the app load via [Coil](https://coil-kt.github.io/coil/) library. Note that it use the same shared instance of ```HttpClient``` from network module. See ```ImageLoaderModule.kt``` to configure Image loading and cache settings.
 
 ## UI and Navigation
 App UI implemented via Jetpack Compose and for navigation it use [Navigation3](https://developer.android.com/guide/navigation/navigation-3) library. Here is a common example of how to declare a navigation entry in this app:
