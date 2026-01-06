@@ -1,15 +1,17 @@
 package com.rickandmorty.app.characters.ui.browse
 
 import com.rickandmorty.app.characters.domain.model.Character
+import com.rickandmorty.app.characters.ui.browse.model.CharacterUi
 import com.rickandmorty.app.characters.ui.mappers.toUiModel
 import com.rickandmorty.app.core.consts.CommonConstants
 import com.rickandmorty.app.core.data.model.Resource
+import kotlin.collections.putAll
 
 class BrowseStateFactory {
 
-    /* Create a default state */
+    /* Create an initial state */
     fun create() = BrowseState(
-        isLoading = true,
+        isLoading = false,
         page = CommonConstants.PAGE_1,
         hasMore = false,
         characters = emptyList(),
@@ -25,12 +27,10 @@ class BrowseStateFactory {
     ): BrowseState {
         var hasMore = true
         val characters = if (resource is Resource.Success) {
-            val pageCharacters = resource.data.map { it.toUiModel() }
-            hasMore = pageCharacters.any()
-            /* Replace or add page characters to state base on refresh flag */
-            if (refresh) pageCharacters else state.characters.plus(pageCharacters)
+            val pageData = resource.data.map { it.toUiModel() }
+            hasMore = pageData.any()
+            buildCharactersList(state, page, pageData, refresh)
         } else {
-            /* Characters do not loaded yet */
             state.characters
         }
         return state.copy(
@@ -40,5 +40,29 @@ class BrowseStateFactory {
             characters = characters,
             errorMessage = resource.errorMessage
         )
+    }
+
+    private fun buildCharactersList(
+        state: BrowseState,
+        page: Int,
+        pageData: List<CharacterUi>,
+        refresh: Boolean
+    ): List<CharacterUi> {
+        return when {
+            refresh -> pageData
+            page > state.page -> state.characters.plus(pageData)
+            else -> mergeCharactersData(state.characters, pageData)
+        }
+    }
+
+    private fun mergeCharactersData(
+        stateData: List<CharacterUi>,
+        other: List<CharacterUi>
+    ): List<CharacterUi> {
+        val dataMap = buildMap {
+            putAll(stateData.map { it.id to it })
+            putAll(other.map { it.id to it })
+        }
+        return dataMap.values.toList()
     }
 }

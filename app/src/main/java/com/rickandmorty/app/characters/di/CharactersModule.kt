@@ -1,7 +1,7 @@
 package com.rickandmorty.app.characters.di
 
-import com.rickandmorty.app.characters.data.cache.CharactersCacheDataSource
-import com.rickandmorty.app.characters.data.cache.CharactersCacheDataSourceImpl
+import com.rickandmorty.app.characters.data.local.CharactersLocalDataSource
+import com.rickandmorty.app.characters.data.local.CharactersLocalDataSourceImpl
 import com.rickandmorty.app.characters.data.remote.CharactersRemoteDataSource
 import com.rickandmorty.app.characters.data.remote.CharactersRemoteDataSourceImpl
 import com.rickandmorty.app.characters.data.repository.CharactersRepository
@@ -26,8 +26,8 @@ val charactersFeatureModule = module {
     factoryOf(::CharactersRemoteDataSourceImpl) {
         bind<CharactersRemoteDataSource>()
     }
-    singleOf(::CharactersCacheDataSourceImpl) {
-        bind<CharactersCacheDataSource>()
+    factoryOf(::CharactersLocalDataSourceImpl) {
+        bind<CharactersLocalDataSource>()
     }
 
     /* Repositories */
