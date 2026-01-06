@@ -8,7 +8,7 @@ class CharactersLocalDataSourceImpl(
     private val charactersDao: CharacterDao
 ) : CharactersLocalDataSource {
 
-    override suspend fun save(vararg characters: CharacterEntity) {
+    override suspend fun update(vararg characters: CharacterEntity) {
         charactersDao.insert(*characters)
     }
 

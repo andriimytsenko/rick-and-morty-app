@@ -14,16 +14,14 @@ internal class CharactersRepositoryImpl(
     private val localDataSource: CharactersLocalDataSource
 ) : CharactersRepository {
 
-    override fun getCharacters(page: Int) = flow {
+    override fun getAll(page: Int) = flow {
         try {
-            /* Fetch data from local source */
             localDataSource.getAll(page).also { localData ->
                 emit(Resource.Success(localData.map { it.toDomainModel() }))
             }
             emit(Resource.Loading)
-            /* Fetch data from remote source and save it locally */
-            remoteDataSource.getCharacters(page).also { remoteData ->
-                localDataSource.save(*remoteData.map { it.toLocalModel() }.toTypedArray())
+            remoteDataSource.getAll(page).also { remoteData ->
+                localDataSource.update(*remoteData.map { it.toLocalModel() }.toTypedArray())
                 emit(Resource.Success(remoteData.map { it.toDomainModel() }))
             }
         } catch (ex: Exception) {
@@ -31,10 +29,22 @@ internal class CharactersRepositoryImpl(
         }
     }.flowOn(Dispatchers.IO)
 
-    override fun getCharacterById(id: Int) = flow {
-        when (val character = localDataSource.getById(id)) {
-            null -> emit(Resource.Error(Exception("No saved details")))
-            else -> emit(Resource.Success(character.toDomainModel()))
+    override fun getById(id: Int) = flow {
+        try {
+            localDataSource.getById(id)?.let { localData ->
+                emit(Resource.Success(localData.toDomainModel()))
+                // We could be sure that local data source contains all
+                // available details about character. If none records found
+                // for given id try to fetch details from remote source
+                return@flow
+            }
+            emit(Resource.Loading)
+            remoteDataSource.getById(id).let { remoteData ->
+                localDataSource.update(remoteData.toLocalModel())
+                emit(Resource.Success(remoteData.toDomainModel()))
+            }
+        } catch (ex: Exception) {
+            emit(Resource.Error(ex))
         }
     }.flowOn(Dispatchers.IO)
 }

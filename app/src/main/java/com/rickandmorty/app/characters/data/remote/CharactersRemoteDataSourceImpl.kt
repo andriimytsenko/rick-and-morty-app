@@ -12,7 +12,7 @@ internal class CharactersRemoteDataSourceImpl(
     private val httpClient: HttpClient
 ) : CharactersRemoteDataSource {
 
-    override suspend fun getCharacters(page: Int): List<CharacterDto> {
+    override suspend fun getAll(page: Int): List<CharacterDto> {
         val response = httpClient.get {
             url {
                 appendPathSegments("character")
@@ -20,5 +20,14 @@ internal class CharactersRemoteDataSourceImpl(
             }
         }
         return response.body<CharactersResponse>().results
+    }
+
+    override suspend fun getById(id: Int): CharacterDto {
+        val response = httpClient.get {
+            url {
+                appendPathSegments("character", "$id")
+            }
+        }
+        return response.body<CharacterDto>()
     }
 }

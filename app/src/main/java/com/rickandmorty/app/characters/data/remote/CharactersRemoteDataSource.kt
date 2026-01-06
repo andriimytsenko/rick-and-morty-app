@@ -4,5 +4,7 @@ import com.rickandmorty.app.characters.data.remote.model.CharacterDto
 
 interface CharactersRemoteDataSource {
 
-    suspend fun getCharacters(page: Int): List<CharacterDto>
+    suspend fun getAll(page: Int): List<CharacterDto>
+
+    suspend fun getById(id: Int): CharacterDto
 }
