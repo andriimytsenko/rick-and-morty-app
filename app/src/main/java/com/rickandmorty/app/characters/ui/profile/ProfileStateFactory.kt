@@ -27,7 +27,7 @@ class ProfileStateFactory {
         state: ProfileState,
         resource: Resource<Character>
     ): ProfileState {
-        val profile = if (resource is Resource.Success<Character>) {
+        val profile = if (resource is Resource.Ready<Character>) {
             resource.data.toProfileUiModel()
         } else {
             state.profile

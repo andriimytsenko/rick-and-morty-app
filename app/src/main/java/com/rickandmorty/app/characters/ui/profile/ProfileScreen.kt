@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.rickandmorty.app.R
 import com.rickandmorty.app.characters.ui.components.ProfileHeader
-import com.rickandmorty.app.characters.ui.components.ProfileTextSection
+import com.rickandmorty.app.characters.ui.components.ProfileTextItem
 import com.rickandmorty.app.characters.ui.profile.model.ProfileUi
 import com.rickandmorty.app.core.ui.theme.RickAndMortyTheme
 
@@ -50,15 +50,15 @@ private fun ProfileContent(
             species = state.profile.species,
             status = state.profile.status
         )
-        ProfileTextSection(
+        ProfileTextItem(
             title = stringResource(R.string.gender),
             text = state.profile.gender
         )
-        ProfileTextSection(
+        ProfileTextItem(
             title = stringResource(R.string.location),
             text = state.profile.location
         )
-        ProfileTextSection(
+        ProfileTextItem(
             title = stringResource(R.string.origin),
             text = state.profile.origin
         )

@@ -14,6 +14,6 @@ class GetCharactersUseCase(
 ) {
 
     operator fun invoke(page: Int): Flow<Pair<Resource<List<Character>>, Int>> {
-        return charactersRepository.getCharacters(page).map { it to page }
+        return charactersRepository.getAll(page).map { it to page }
     }
 }

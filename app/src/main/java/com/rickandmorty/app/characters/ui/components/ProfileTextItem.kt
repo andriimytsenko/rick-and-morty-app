@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.sp
 import com.rickandmorty.app.core.ui.theme.RickAndMortyTheme
 
 @Composable
-fun ProfileTextSection(
+fun ProfileTextItem(
     title: String,
     text: String,
     modifier: Modifier = Modifier
@@ -39,9 +39,9 @@ fun ProfileTextSection(
 
 @Preview(showBackground = true)
 @Composable
-private fun ProfileTextSectionPreview() {
+private fun ProfileTextItemPreview() {
     RickAndMortyTheme {
-        ProfileTextSection(
+        ProfileTextItem(
             title = "Location",
             text = "Earth"
         )

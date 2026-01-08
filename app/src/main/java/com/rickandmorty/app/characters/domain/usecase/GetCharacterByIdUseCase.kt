@@ -13,6 +13,6 @@ class GetCharacterByIdUseCase(
 ) {
 
     operator fun invoke(id: Int): Flow<Resource<Character>> {
-        return charactersRepository.getCharacterById(id)
+        return charactersRepository.getById(id)
     }
 }
